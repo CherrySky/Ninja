@@ -16,33 +16,71 @@
 
 package controllers;
 
+import javax.inject.Inject;
+
+import models.Contact;
+import ninja.Context;
+import ninja.FilterWith;
 import ninja.Result;
 import ninja.Results;
+import ninja.appengine.AppEngineFilter;
+import ninja.session.FlashScope;
+import ninja.session.Session;
+import services.GreetingService;
 
 import com.google.inject.Singleton;
 
-
 @Singleton
+@FilterWith(AppEngineFilter.class)
 public class ApplicationController {
 
-    public Result index() {
+	@Inject
+	GreetingService greeter;
 
-        return Results.html();
+	public Result index() {
+		return Results.html().render("greeter", greeter.hello());
+	}
 
-    }
-    
-    public Result helloWorldJson() {
-        
-        SimplePojo simplePojo = new SimplePojo();
-        simplePojo.content = "Hello World! Hello Json!";
+	public Result helloWorldJson() {
 
-        return Results.json().render(simplePojo);
+		SimplePojo simplePojo = new SimplePojo();
+		simplePojo.content = "Hello World! Hello Json!";
 
-    }
-    
-    public static class SimplePojo {
+		return Results.json().render(simplePojo);
 
-        public String content;
-        
-    }
+	}
+	
+	public Result postContactForm(Context context, Contact contact) {
+
+		System.out.println(contact);
+
+		return Results.html();
+	}
+
+	public Result injection(Context context) {
+		// return Results.html().render("greeting", greeter.hello());
+		System.out.println("greeter: " + greeter.hashCode());
+		// return Results.json().render(greeter.hello());
+		return Results.html().render(greeter.hello());
+	}
+
+	public Result getUserNameFromSession(Session session, FlashScope flashScope) {
+
+		String username = session.get("username");
+
+		// flashScope.success("login.success");
+		flashScope.error("login.error");
+
+		return Results.html();
+		// return Results.json().render(username);
+
+	}
+
+	
+
+	public static class SimplePojo {
+
+		public String content;
+
+	}
 }

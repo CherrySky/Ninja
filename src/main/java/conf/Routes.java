@@ -16,31 +16,54 @@
 
 package conf;
 
-
 import ninja.AssetsController;
+import ninja.Results;
 import ninja.Router;
 import ninja.application.ApplicationRoutes;
 import controllers.ApplicationController;
+import controllers.LoginController;
 
 public class Routes implements ApplicationRoutes {
 
-    @Override
-    public void init(Router router) {  
-        
-        router.GET().route("/").with(ApplicationController.class, "index");
-        router.GET().route("/hello_world.json").with(ApplicationController.class, "helloWorldJson");
-        
- 
-        ///////////////////////////////////////////////////////////////////////
-        // Assets (pictures / javascript)
-        ///////////////////////////////////////////////////////////////////////    
-        router.GET().route("/assets/webjars/{fileName: .*}").with(AssetsController.class, "serveWebJars");
-        router.GET().route("/assets/{fileName: .*}").with(AssetsController.class, "serveStatic");
-        
-        ///////////////////////////////////////////////////////////////////////
-        // Index / Catchall shows index page
-        ///////////////////////////////////////////////////////////////////////
-        router.GET().route("/.*").with(ApplicationController.class, "index");
-    }
+	@Override
+	public void init(Router router) {
+
+		router.GET().route("/").with(ApplicationController.class, "index");
+		router.GET().route("/hello_world.json").with(ApplicationController.class, "helloWorldJson");
+		router.GET().route("/injection").with(ApplicationController.class, "injection");
+		router.GET().route("/getUserNameFromSession").with(ApplicationController.class, "getUserNameFromSession");
+		router.POST().route("/contactForm").with(ApplicationController.class, "postContactForm");
+
+		// Login
+		router.GET().route("/login").with(LoginController.class, "index");
+		router.GET().route("/login/injection").with(LoginController.class, "injection");
+
+		// /////////////////////////////////////////////////////////////////////
+		// Assets (pictures / javascript)
+		// /////////////////////////////////////////////////////////////////////
+		router.GET().route("/assets/webjars/{fileName: .*}").with(AssetsController.class, "serveWebJars");
+		router.GET().route("/assets/{fileName: .*}").with(AssetsController.class, "serveStatic");
+
+		// /////////////////////////////////////////////////////////////////////
+		// Index / Catchall shows index page
+		// /////////////////////////////////////////////////////////////////////
+		router.GET().route("/.*").with(ApplicationController.class, "index");
+	}
+
+	private void renderAStaticPageSimplyWithoutAnyController(Router router) {
+		// a GET request to "/" will be redirect to "/dashboard"
+		router.GET().route("/").with(Results.redirect("/dashboard"));
+
+		// show a static page
+		router.GET().route("/dashboard").with(Results.html().template("/dashboard.html"));
+	}
+
+	private void regexRoutes(Router router) {
+		// matches for instance "/assets/00012", "/assets/12334", ...
+		router.GET().route("/assets/\\d*").with(AssetsController.class, "serveDigits");
+
+		// matches for instance "/assets/myasset.xml", "/assets/boing.txt", ...
+		router.GET().route("/assets/.*").with(AssetsController.class, "serveArbitrary");
+	}
 
 }
