@@ -24,6 +24,8 @@ import ninja.FilterWith;
 import ninja.Result;
 import ninja.Results;
 import ninja.appengine.AppEngineFilter;
+import ninja.cache.NinjaCache;
+import ninja.metrics.Timed;
 import ninja.session.FlashScope;
 import ninja.session.Session;
 import services.GreetingService;
@@ -37,50 +39,21 @@ public class ApplicationController {
 	@Inject
 	GreetingService greeter;
 
+	@Inject
+	NinjaCache ninjaCache;
+
 	public Result index() {
 		return Results.html().render("greeter", greeter.hello());
 	}
 
 	public Result helloWorldJson() {
-
 		SimplePojo simplePojo = new SimplePojo();
 		simplePojo.content = "Hello World! Hello Json!";
 
 		return Results.json().render(simplePojo);
-
 	}
-	
-	public Result postContactForm(Context context, Contact contact) {
-
-		System.out.println(contact);
-
-		return Results.html();
-	}
-
-	public Result injection(Context context) {
-		// return Results.html().render("greeting", greeter.hello());
-		System.out.println("greeter: " + greeter.hashCode());
-		// return Results.json().render(greeter.hello());
-		return Results.html().render(greeter.hello());
-	}
-
-	public Result getUserNameFromSession(Session session, FlashScope flashScope) {
-
-		String username = session.get("username");
-
-		// flashScope.success("login.success");
-		flashScope.error("login.error");
-
-		return Results.html();
-		// return Results.json().render(username);
-
-	}
-
-	
 
 	public static class SimplePojo {
-
 		public String content;
-
 	}
 }

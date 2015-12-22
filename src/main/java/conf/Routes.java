@@ -21,22 +21,26 @@ import ninja.Results;
 import ninja.Router;
 import ninja.application.ApplicationRoutes;
 import controllers.ApplicationController;
+import controllers.FeedController;
 import controllers.LoginController;
 
 public class Routes implements ApplicationRoutes {
 
+	private static final String INDEX = "index";
+	
 	@Override
 	public void init(Router router) {
 
-		router.GET().route("/").with(ApplicationController.class, "index");
+		// index
+		router.GET().route("/").with(ApplicationController.class, INDEX);
 		router.GET().route("/hello_world.json").with(ApplicationController.class, "helloWorldJson");
-		router.GET().route("/injection").with(ApplicationController.class, "injection");
-		router.GET().route("/getUserNameFromSession").with(ApplicationController.class, "getUserNameFromSession");
-		router.POST().route("/contactForm").with(ApplicationController.class, "postContactForm");
+		
+		// login
+		router.GET().route("/login").with(LoginController.class, INDEX);
+		
+		// feed
+		router.GET().route("/feed").with(FeedController.class, INDEX);
 
-		// Login
-		router.GET().route("/login").with(LoginController.class, "index");
-		router.GET().route("/login/injection").with(LoginController.class, "injection");
 
 		// /////////////////////////////////////////////////////////////////////
 		// Assets (pictures / javascript)

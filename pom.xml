@@ -91,7 +91,7 @@
                     <reload>automatic</reload>
                     <scanTargetPatterns>
                         <scanTargetPattern>
-                            <directory>target/classes</directory>
+                            <directory>target/test-classes</directory>
                             <includes>
                                 <include>**/*</include>
                             </includes>
@@ -256,6 +256,11 @@
             <groupId>org.ninjaframework</groupId>
             <artifactId>ninja-appengine-module</artifactId>
             <version>${ninja-appengine.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.ninjaframework</groupId>
+            <artifactId>ninja-metrics</artifactId>
+            <version>${ninja.version}</version>
         </dependency>
         
         <!-- GAE - Google App Engine -->
