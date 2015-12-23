@@ -20,13 +20,24 @@
         padding-top: 60px;
         padding-bottom: 40px;
       }
-      .error-template {padding: 40px 15px;text-align: center;}      
+      .error-template {padding: 40px 15px;text-align: center;}
+      #console { 
+		height: 400px; 
+		overflow: auto; 
+	  }
+	  .username-msg {color:orange;}
+	  .connect-msg {color:green;}
+	  .disconnect-msg {color:red;}
+	  .send-msg {color:#888}
     </style>
 
     <!-- Le HTML5 shim, for IE6-8 support of HTML5 elements -->
     <!--[if lt IE 9]>
       <script src="https://html5shim.googlecode.com/svn/trunk/html5.js"></script>
     <![endif]-->
+
+	<#include "socketio.ftl.html"/>
+    
   </head>
 <body>
 

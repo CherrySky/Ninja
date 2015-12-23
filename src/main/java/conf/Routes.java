@@ -40,7 +40,12 @@ public class Routes implements ApplicationRoutes {
 		
 		// feed
 		router.GET().route("/feed").with(FeedController.class, INDEX);
-
+		
+		// js
+		router.GET().route("/js/socket.io/socket.io.js").with(AssetsController.class, "serveStatic");
+		router.GET().route("/js/jquery-1.7.2.min.js").with(AssetsController.class, "serveStatic");
+		router.GET().route("/js/moment.min.js").with(AssetsController.class, "serveStatic");
+		
 
 		// /////////////////////////////////////////////////////////////////////
 		// Assets (pictures / javascript)

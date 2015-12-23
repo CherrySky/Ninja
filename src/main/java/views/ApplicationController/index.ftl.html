@@ -1,6 +1,15 @@
-<#import "../layout/defaultLayout.ftl.html" as layout> 
-<@layout.myLayout "Home page">    
-
-<h1>${i18n("hello.world")}</h1>
-
+<#import "../layout/defaultLayoutWithSocketio.ftl.html" as layout> 
+<@layout.myLayout "Home page">	
+	
+	<h1>Chat Room</h1>	
+	<br/>
+	<div id="console" class="well">
+	</div>
+	
+    <form class="well form-inline" onsubmit="return false;">
+       <input id="msg" class="input-xlarge" type="text" placeholder="Type something..."/>
+       <button type="button" onClick="sendMessage()" class="btn">Send</button>
+       <button type="button" onClick="sendDisconnect()" class="btn">Disconnect</button>
+       <button type="button" onClick="sendConnect()" class="btn">Connect</button>
+    </form>
 </@layout.myLayout>
