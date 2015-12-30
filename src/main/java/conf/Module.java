@@ -17,11 +17,8 @@
 package conf;
 
 import ninja.appengine.AppEngineModule;
-import services.FeedServiceAction;
 import services.GreetingService;
 import services.GreetingServiceImpl;
-import services.HttpClientService;
-import services.HttpService;
 
 import com.google.inject.AbstractModule;
 import com.google.inject.Singleton;
@@ -32,9 +29,6 @@ public class Module extends AbstractModule {
 
     protected void configure() {
     	bind(GreetingService.class).to(GreetingServiceImpl.class);
-    	bind(HttpService.class).to(HttpClientService.class);
-    	
-    	bind(FeedServiceAction.class);
     	
     	install(new AppEngineModule());
     }

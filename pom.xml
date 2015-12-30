@@ -91,7 +91,7 @@
                     <reload>automatic</reload>
                     <scanTargetPatterns>
                         <scanTargetPattern>
-                            <directory>target/test-classes</directory>
+                            <directory>target/classes</directory>
                             <includes>
                                 <include>**/*</include>
                             </includes>
@@ -117,7 +117,7 @@
                 <version>${appengine.version}</version>
                 <configuration>
                     <appId>fine-pride-115214</appId>
-                    <version>3</version>
+                    <version>4</version>
                     <jvmFlags>
                         <!-- see also: http://blog.cwill-dev.com/2011/11/22/grails-java-lang-outofmemoryerror-permgen-space/ -->
                         <jvmFlag>-Xms512m</jvmFlag>
@@ -256,11 +256,6 @@
             <groupId>org.ninjaframework</groupId>
             <artifactId>ninja-appengine-module</artifactId>
             <version>${ninja-appengine.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>org.ninjaframework</groupId>
-            <artifactId>ninja-metrics</artifactId>
-            <version>${ninja.version}</version>
         </dependency>
         
         <!-- GAE - Google App Engine -->
