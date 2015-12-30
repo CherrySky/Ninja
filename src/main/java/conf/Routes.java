@@ -21,7 +21,6 @@ import ninja.Results;
 import ninja.Router;
 import ninja.application.ApplicationRoutes;
 import controllers.ApplicationController;
-import controllers.LoginController;
 
 public class Routes implements ApplicationRoutes {
 
@@ -29,15 +28,7 @@ public class Routes implements ApplicationRoutes {
 	public void init(Router router) {
 
 		router.GET().route("/").with(ApplicationController.class, "index");
-		router.GET().route("/hello_world.json").with(ApplicationController.class, "helloWorldJson");
-		router.GET().route("/injection").with(ApplicationController.class, "injection");
-		router.GET().route("/getUserNameFromSession").with(ApplicationController.class, "getUserNameFromSession");
-		router.POST().route("/contactForm").with(ApplicationController.class, "postContactForm");
-
-		// Login
-		router.GET().route("/login").with(LoginController.class, "index");
-		router.GET().route("/login/injection").with(LoginController.class, "injection");
-
+		
 		// /////////////////////////////////////////////////////////////////////
 		// Assets (pictures / javascript)
 		// /////////////////////////////////////////////////////////////////////
