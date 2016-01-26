@@ -29,6 +29,8 @@ public class Routes implements ApplicationRoutes {
 
 		router.GET().route("/").with(ApplicationController.class, "index");
 		
+		router.GET().route("/refresh").with(ApplicationController.class, "refresh");
+		
 		// /////////////////////////////////////////////////////////////////////
 		// Assets (pictures / javascript)
 		// /////////////////////////////////////////////////////////////////////

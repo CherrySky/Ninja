@@ -17,15 +17,23 @@
 package conf;
 
 import ninja.appengine.AppEngineModule;
+import services.scheduler.FeedService;
 
 import com.google.inject.AbstractModule;
 import com.google.inject.Singleton;
+import com.googlecode.objectify.Objectify;
 
 @Singleton
 public class Module extends AbstractModule {
     
 
     protected void configure() {
+    	bind(StartupActions.class);
+    	bind(Objectify.class).toProvider(ObjectifyProvider.class);
+    	
+    	// Service
+    	bind(FeedService.class);
+    	
     	install(new AppEngineModule());
     }
 

@@ -91,7 +91,7 @@
                     <reload>automatic</reload>
                     <scanTargetPatterns>
                         <scanTargetPattern>
-                            <directory>target/classes</directory>
+                            <directory>target/${project.artifactId}-${project.version}/WEB-INF/classes</directory>
                             <includes>
                                 <include>**/*</include>
                             </includes>
@@ -117,7 +117,7 @@
                 <version>${appengine.version}</version>
                 <configuration>
                     <appId>fine-pride-115214</appId>
-                    <version>4</version>
+                    <version>5</version>
                     <jvmFlags>
                         <!-- see also: http://blog.cwill-dev.com/2011/11/22/grails-java-lang-outofmemoryerror-permgen-space/ -->
                         <jvmFlag>-Xms512m</jvmFlag>

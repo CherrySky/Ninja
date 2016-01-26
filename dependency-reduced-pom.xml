@@ -87,7 +87,7 @@
           <reload>automatic</reload>
           <scanTargetPatterns>
             <scanTargetPattern>
-              <directory>target/classes</directory>
+              <directory>target/${project.artifactId}-${project.version}/WEB-INF/classes</directory>
               <includes>
                 <include>**/*</include>
               </includes>
@@ -111,7 +111,7 @@
         <version>${appengine.version}</version>
         <configuration>
           <appId>fine-pride-115214</appId>
-          <version>4</version>
+          <version>5</version>
           <jvmFlags>
             <jvmFlag>-Xms512m</jvmFlag>
             <jvmFlag>-Xmx1024m</jvmFlag>
@@ -190,25 +190,25 @@
         <dependency>
           <groupId>com.google.appengine</groupId>
           <artifactId>appengine-api-stubs</artifactId>
-          <version>${appengine.version}</version>
+          <version>1.9.30</version>
           <scope>provided</scope>
         </dependency>
         <dependency>
           <groupId>com.google.appengine</groupId>
           <artifactId>appengine-tools-sdk</artifactId>
-          <version>${appengine.version}</version>
+          <version>1.9.30</version>
           <scope>provided</scope>
         </dependency>
         <dependency>
           <groupId>com.google.appengine</groupId>
           <artifactId>appengine-api-labs</artifactId>
-          <version>${appengine.version}</version>
+          <version>1.9.30</version>
           <scope>provided</scope>
         </dependency>
         <dependency>
           <groupId>com.google.appengine</groupId>
           <artifactId>appengine-testing</artifactId>
-          <version>${appengine.version}</version>
+          <version>1.9.30</version>
           <scope>provided</scope>
         </dependency>
       </dependencies>
@@ -250,25 +250,25 @@
         <dependency>
           <groupId>com.google.appengine</groupId>
           <artifactId>appengine-api-stubs</artifactId>
-          <version>1.9.30</version>
+          <version>${appengine.version}</version>
           <scope>test</scope>
         </dependency>
         <dependency>
           <groupId>com.google.appengine</groupId>
           <artifactId>appengine-tools-sdk</artifactId>
-          <version>1.9.30</version>
+          <version>${appengine.version}</version>
           <scope>test</scope>
         </dependency>
         <dependency>
           <groupId>com.google.appengine</groupId>
           <artifactId>appengine-api-labs</artifactId>
-          <version>1.9.30</version>
+          <version>${appengine.version}</version>
           <scope>test</scope>
         </dependency>
         <dependency>
           <groupId>com.google.appengine</groupId>
           <artifactId>appengine-testing</artifactId>
-          <version>1.9.30</version>
+          <version>${appengine.version}</version>
           <scope>test</scope>
         </dependency>
       </dependencies>
@@ -284,6 +284,10 @@
       <version>5.2.2</version>
       <scope>test</scope>
       <exclusions>
+        <exclusion>
+          <artifactId>ninja-standalone</artifactId>
+          <groupId>org.ninjaframework</groupId>
+        </exclusion>
         <exclusion>
           <artifactId>junit</artifactId>
           <groupId>junit</groupId>
@@ -318,25 +322,25 @@
       <groupId>com.google.appengine</groupId>
       <artifactId>appengine-api-stubs</artifactId>
       <version>1.9.30</version>
-      <scope>test</scope>
+      <scope>provided</scope>
     </dependency>
     <dependency>
       <groupId>com.google.appengine</groupId>
       <artifactId>appengine-tools-sdk</artifactId>
       <version>1.9.30</version>
-      <scope>test</scope>
+      <scope>provided</scope>
     </dependency>
     <dependency>
       <groupId>com.google.appengine</groupId>
       <artifactId>appengine-api-labs</artifactId>
       <version>1.9.30</version>
-      <scope>test</scope>
+      <scope>provided</scope>
     </dependency>
     <dependency>
       <groupId>com.google.appengine</groupId>
       <artifactId>appengine-testing</artifactId>
       <version>1.9.30</version>
-      <scope>test</scope>
+      <scope>provided</scope>
     </dependency>
   </dependencies>
   <properties>

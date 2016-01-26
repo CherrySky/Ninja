@@ -18,8 +18,8 @@
 
 <appengine-web-app xmlns="http://appengine.google.com/ns/1.0">
 
-    <application>fine-pride-115214</application>
-    <version>3</version>
+    <application>APP_NAME</application>
+    <version>VERSION</version>
 
     <static-files>
         <include path="/assets/**" />

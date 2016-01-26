@@ -16,19 +16,47 @@
 
 package controllers;
 
+import javax.inject.Inject;
+
+import models.Quote;
 import ninja.FilterWith;
 import ninja.Result;
 import ninja.Results;
 import ninja.appengine.AppEngineFilter;
+import antlr.StringUtils;
 
 import com.google.inject.Singleton;
+
+import dao.QuoteDao;
 
 @Singleton
 @FilterWith(AppEngineFilter.class)
 public class ApplicationController {
+	
+	private final static String INDEX = "views/ApplicationController/index.ftl.html";
+	
+	@Inject
+	QuoteDao quoteDao;
 
 	public Result index() {
 		return Results.html();
 	}
+	
+	public Result refresh() {		
+		Quote quote = quoteDao.getQuote("HSBC");
+		
+		return Results.html().render("price", getQuotePrice(quote));
+	}
+
+	private String getQuotePrice(Quote quote) {
+		if (quote == null) {
+			System.out.println("quote is null");
+			return "N/A";
+		}
+		
+		return String.valueOf(quote.price);		
+	}
+	
+	
 	
 }
